@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_line_graph/src/dict_graph_painter.dart';
+import 'package:flutter_line_graph/src/map_graph_painter.dart';
 
-class DictLineGraph extends StatelessWidget {
+class MapLineGraph extends StatelessWidget {
   final double width, height;
 
-  const DictLineGraph({
+  const MapLineGraph({
     Key? key,
     required this.width,
     required this.height,
@@ -13,7 +13,7 @@ class DictLineGraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: DictGraphPainter(),
+      painter: MapGraphPainter(),
       size: Size(width, height),
     );
   }
