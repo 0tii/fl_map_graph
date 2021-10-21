@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class MapGraphHelper {
-  static void pointsFromDict(Map map, Size size) {
-    /*
-    ? width / keyCount = distance between points = x interval
+  static List<Offset> offsetsFromDict(Map<dynamic, num> data, Size size) {
+    var intervalX = size.width / data.length; //the x axis data point interval
+    var factorY =
+        size.height / data.values.toList().reduce(max); //the y-axis factor
+    List<Offset> offsets = [];
+    int index = 0;
 
-    */
-    var xInterval = map.length / size.width;
+    for (var value in data.values) {
+      offsets.add(Offset(index * intervalX, value * factorY));
+      index++;
+    }
+
+    return offsets;
   }
 }

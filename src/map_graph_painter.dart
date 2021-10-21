@@ -1,19 +1,31 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-class DictGraphPainter extends CustomPainter {
+import 'package:flutter_line_graph/src/map_graph_helper.dart';
+
+class MapGraphPainter extends CustomPainter {
+  final Map<dynamic, num> dataMap;
+
+  MapGraphPainter(this.dataMap);
+
   @override
   void paint(Canvas canvas, Size size) {
     const pointMode = ui.PointMode.points;
-    const points = [
-      Offset(50, 100),
-      Offset(270, 100),
-    ];
+    var points = MapGraphHelper.offsetsFromDict(dataMap, size);
     final paint = Paint()
       ..color = Colors.red
-      ..strokeWidth = 4
+      ..strokeWidth = 3;
+    for (var i = 0; i < points.length - 1; i++) {
+      canvas.drawLine(points[i], points[i + 1], paint);
+    }
+    final paint2 = Paint()
+      ..color = Colors.lime
+      ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
-    canvas.drawPoints(pointMode, points, paint);
+    for (var i = 0; i < points.length - 1; i++) {
+      canvas.drawLine(points[i], points[i + 1], paint);
+    }
+    canvas.drawPoints(pointMode, points, paint2);
   }
 
   @override
