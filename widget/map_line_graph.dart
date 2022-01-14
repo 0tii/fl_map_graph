@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_line_graph/src/axis_painter.dart';
 import 'package:flutter_line_graph/src/map_graph_painter.dart';
 
 class MapLineGraph extends StatelessWidget {
@@ -18,7 +19,8 @@ class MapLineGraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: MapGraphPainter(dataMap),
+      foregroundPainter: MapGraphPainter(dataMap),
+      painter: AxisPainter(),
       size: Size(width, height),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
-
 import 'package:flutter_line_graph/src/map_graph_helper.dart';
 
 class MapGraphPainter extends CustomPainter {
@@ -12,20 +11,27 @@ class MapGraphPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     const pointMode = ui.PointMode.points;
     var points = MapGraphHelper.offsetsFromDict(dataMap, size);
-    final paint = Paint()
-      ..color = Colors.red
+
+    //line paint
+    final pathPaint = Paint()
+      ..color = Colors.blue
+      ..style = PaintingStyle.stroke
       ..strokeWidth = 3;
-    for (var i = 0; i < points.length - 1; i++) {
-      canvas.drawLine(points[i], points[i + 1], paint);
-    }
-    final paint2 = Paint()
-      ..color = Colors.lime
-      ..strokeWidth = 3
+    //point paint
+    final pointPaint = Paint()
+      ..color = Colors.yellow
+      ..strokeWidth = 5
       ..strokeCap = StrokeCap.round;
-    for (var i = 0; i < points.length - 1; i++) {
-      canvas.drawLine(points[i], points[i + 1], paint);
+    //draw path along offsets
+    var path = Path();
+    path.moveTo(points[0].dx, points[0].dy);
+    for (var i = 1; i < points.length; i++) {
+      path.lineTo(points[i].dx, points[i].dy);
     }
-    canvas.drawPoints(pointMode, points, paint2);
+    canvas.drawPath(path, pathPaint);
+
+    //draw only points
+    canvas.drawPoints(pointMode, points, pointPaint);
   }
 
   @override
