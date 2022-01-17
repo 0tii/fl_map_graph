@@ -11,6 +11,7 @@ class MapGraphPainter extends CustomPainter {
   final double lineWidth;
 
   final List<double> _colorStops = [];
+  Map<dynamic, num>? oldData;
 
   ///[dataMap] must be a `Map<dynamic, num>` where the key index represents the x value and the value represents the y value of the dataset. By nature the data source must have constantly spaced key values.
   ///
@@ -67,6 +68,8 @@ class MapGraphPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     //todo check if data changed or display mode
-    return false;
+    if (dataMap == oldData) return false;
+    oldData = dataMap;
+    return true;
   }
 }
