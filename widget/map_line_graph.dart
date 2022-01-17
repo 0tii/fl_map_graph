@@ -19,8 +19,8 @@ class MapLineGraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      foregroundPainter: MapGraphPainter(dataMap),
-      painter: AxisPainter(),
+      foregroundPainter: MapGraphPainter(dataMap: dataMap),
+      painter: AxisPainter(dataMap),
       size: Size(width, height),
     );
   }
