@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 class MapGraphHelper {
-  static List<Offset> offsetsFromDict(Map<dynamic, num> data, Size size) {
+  static List<Offset> offsetsFromMap(Map<dynamic, num> data, Size size) {
     //list of offsets to return filled
     List<Offset> offsets = [];
 

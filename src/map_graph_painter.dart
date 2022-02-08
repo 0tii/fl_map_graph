@@ -13,7 +13,8 @@ class MapGraphPainter extends CustomPainter {
   final List<double> _colorStops = [];
   Map<dynamic, num>? oldData;
 
-  ///[dataMap] must be a `Map<dynamic, num>` where the key index represents the x value and the value represents the y value of the dataset. By nature the data source must have constantly spaced key values.
+  ///[dataMap] must be a `Map<dynamic, num>` where the key index represents the x value and the value represents the y value of the dataset.
+  ///By nature the data source must have constantly spaced key values in order to display its data accurately.
   ///
   ///[from] and [to] represent the gradient direction as normalized Vectors, where `Offset(0,0)` is top left and `Offset(1,1)` is bottom right, as per standard `rect` definition.
   ///Right is denoted by `Offset(1,0)` whereas left is represented by `Offset(0,0)`. Only need to be specified if [useGradient] is `true`, default is left to right.
@@ -21,8 +22,8 @@ class MapGraphPainter extends CustomPainter {
     required this.dataMap,
     this.color = const Color(0xFF4ACC60),
     this.gradientColors = const [
-      Color(0xE3FF6AB0),
-      Color(0xFF14BCFF),
+      Color(0xFF5EFF49),
+      Color(0xFF0EAD00),
     ],
     this.from = const Offset(0, 0),
     this.to = const Offset(1, 0),
@@ -41,7 +42,7 @@ class MapGraphPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var points = MapGraphHelper.offsetsFromDict(dataMap, size);
+    var points = MapGraphHelper.offsetsFromMap(dataMap, size);
 
     //graph line paint
     final pathPaint = Paint()
